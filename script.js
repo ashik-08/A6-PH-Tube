@@ -1,16 +1,17 @@
+let num = 2;
 const showAllButton = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/videos/categories"
   );
   const data = await res.json();
-  console.log(data.data);
+//   console.log(data.data);
 
   const buttonContainer = document.getElementById("button-container");
-
+    
   data.data.forEach((category) => {
     const div = document.createElement("div");
     div.innerHTML = `
-        <button onclick="showVideos(${category.category_id}); toggleLoadingDots(true);" class="bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">${category.category}</button>
+        <button onclick="showVideos(${category.category_id}); toggleLoadingDots(true); changeColor(${category.category_id});" class="button bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">${category.category}</button>
         `;
     buttonContainer.appendChild(div);
   });
@@ -21,7 +22,7 @@ const showVideos = async (id) => {
     `https://openapi.programming-hero.com/api/videos/category/${id}`
   );
   const data = await res.json();
-  console.log(data.data);
+//   console.log(data.data);
 
   const cardContainer = document.getElementById("card-container");
   const nullCardContainer = document.getElementById("null-card-container");
@@ -40,30 +41,55 @@ const showVideos = async (id) => {
         `;
     nullCardContainer.appendChild(div);
   } else {
+    // console.log(data.data[0].thumbnail);
     data.data.forEach((videos) => {
       const div = document.createElement("div");
-      div.innerHTML = `
+      if (videos.authors[0]?.verified === true) {
+        div.innerHTML = `
         <figure>
-            <img src="./images/Icon.png" alt="thumbnail-img" class="rounded-lg"/>
+            <img src="${videos?.thumbnail}" alt="thumbnail-img" class="rounded-lg"/>
         </figure>
         <div class="flex space-x-3">
             <figure>
-                <img src="./images/badge.svg" alt="user-img" />
+                <img src="${videos.authors[0]?.profile_picture}" alt="user-img" />
             </figure>
             <div>
-                <h4>Title</h4>
+                <h4>${videos?.title}</h4>
                 <p class="inline-flex gap-2">
-                    Awlad Hossain <img src="./images/badge.svg" alt="verification-img" />
+                ${videos.authors[0]?.profile_name} <img src="./images/badge.svg" alt="verification-img" />
                 </p>
-                <p>91K views</p>
+                <p>${videos.others?.views} views</p>
             </div>
         </div>
         `;
+      } else {
+        div.innerHTML = `
+        <figure>
+            <img src="${videos?.thumbnail}" alt="thumbnail-img" class="rounded-lg"/>
+        </figure>
+        <div class="flex space-x-3">
+            <figure>
+                <img src="${videos.authors[0]?.profile_picture}" alt="user-img" />
+            </figure>
+            <div>
+                <h4>${videos?.title}</h4>
+                <p class="inline-flex gap-2">
+                ${videos.authors[0]?.profile_name}
+                </p>
+                <p>${videos.others?.views} views</p>
+            </div>
+        </div>
+        `;
+      }
+      
       cardContainer.appendChild(div);
     });
   }
+  // change button color
+  
   // hide loading dots
   toggleLoadingDots(false);
+//   changeColor(false);
 };
 
 const toggleLoadingDots = (isLoading) => {
@@ -75,5 +101,22 @@ const toggleLoadingDots = (isLoading) => {
   }
 };
 
+// change button color
+// let buttons = document.querySelectorAll('.button');
+// let prevButtonIndex = null;
+
+// Set the initial color
+// changeColor(0);
+/*
+function changeColor(index) {
+    console.log('clicked');
+  if (prevButtonIndex !== null) {
+    buttons[prevButtonIndex].style.backgroundColor = 'gray';
+  }
+
+  buttons[index].style.backgroundColor = 'red';
+  prevButtonIndex = index;
+}
+*/
 showAllButton();
-// showVideos();
+showVideos('1000');
