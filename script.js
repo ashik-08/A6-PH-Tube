@@ -45,39 +45,93 @@ const showVideos = async (id) => {
     data.data.forEach((videos) => {
       const div = document.createElement("div");
       if (videos.authors[0]?.verified === true) {
+        // div.innerHTML = `
+        // <figure class="w-[300px] h-[200px]">
+        //     <img src="${videos?.thumbnail}" alt="thumbnail-img" class="rounded-lg"/>
+        // </figure>
+        // <div class="flex space-x-3">
+        //     <figure class="w-[40px] h-[40px]">
+        //         <img src="${videos.authors[0]?.profile_picture}" alt="user-img" />
+        //     </figure>
+        //     <div>
+        //         <h4>${videos?.title}</h4>
+        //         <p class="inline-flex gap-2">
+        //         ${videos.authors[0]?.profile_name} <img src="./images/badge.svg" alt="verification-img" />
+        //         </p>
+        //         <p>${videos.others?.views} views</p>
+        //     </div>
+        // </div>
+        // `;
         div.innerHTML = `
-        <figure>
-            <img src="${videos?.thumbnail}" alt="thumbnail-img" class="rounded-lg"/>
-        </figure>
-        <div class="flex space-x-3">
-            <figure>
-                <img src="${videos.authors[0]?.profile_picture}" alt="user-img" />
+        <div class="space-y-5">
+          <figure class="max-w-[350px] h-[200px]">
+            <img class="w-full h-full rounded-lg" src="${videos?.thumbnail}" alt="thumbnail-img" />
+          </figure>
+
+          <div class="flex space-x-4">
+            <figure class="w-10 h-10">
+                <img class="w-full h-full rounded-full" src="${videos.authors[0]?.profile_picture}" alt="user-img" />
             </figure>
             <div>
-                <h4>${videos?.title}</h4>
-                <p class="inline-flex gap-2">
+                <h4 class="text-[#171717] text-lg font-bold">${videos?.title}</h4>
+                <p class="inline-flex gap-2 text-[#171717B2] text-base font-normal mt-1">
                 ${videos.authors[0]?.profile_name} <img src="./images/badge.svg" alt="verification-img" />
                 </p>
-                <p>${videos.others?.views} views</p>
+                <p class="text-[#171717B2] text-base font-normal mt-1.5">${videos.others?.views} views</p>
             </div>
+          </div>
         </div>
         `;
       } else {
+        // div.innerHTML = `
+        // <figure class="w-[300px] h-[200px]">
+        //     <img src="${videos?.thumbnail}" alt="thumbnail-img" class="rounded-lg"/>
+        // </figure>
+        // <div class="flex space-x-3">
+        //     <figure class="w-[40px] h-[40px]">
+        //         <img src="${videos.authors[0]?.profile_picture}" alt="user-img" />
+        //     </figure>
+        //     <div>
+        //         <h4>${videos?.title}</h4>
+        //         <p class="inline-flex gap-2">
+        //         ${videos.authors[0]?.profile_name}
+        //         </p>
+        //         <p>${videos.others?.views} views</p>
+        //     </div>
+        // </div>
+        // `;
+        // div.innerHTML = `
+        // <div class="">
+        //   <figure class="max-w-[350px] h-[200px]">
+        //     <img class="w-full h-full rounded-lg" src="${videos?.thumbnail}" alt="thumbnail-img" />
+        //   </figure>
+        //   <div class="card-body">
+        //     <h2 class="card-title">Shoes!</h2>
+        //     <p>If a dog chews shoes whose shoes does he choose?</p>
+        //   <div class="card-actions justify-end">
+        //     <button class="btn btn-primary">Buy Now</button>
+        //   </div>
+        //   </div>
+        // </div>
+        // `;
         div.innerHTML = `
-        <figure>
-            <img src="${videos?.thumbnail}" alt="thumbnail-img" class="rounded-lg"/>
-        </figure>
-        <div class="flex space-x-3">
-            <figure>
-                <img src="${videos.authors[0]?.profile_picture}" alt="user-img" />
+        <div class="space-y-5">
+          <figure class="max-w-[350px] h-[200px]">
+            <img class="w-full h-full rounded-lg" src="${videos?.thumbnail}" alt="thumbnail-img" />
+          </figure>
+
+          <div class="flex space-x-4">
+            <figure class="w-10 h-10">
+                <img class="w-full h-full rounded-full" src="${videos.authors[0]?.profile_picture}" alt="user-img" />
             </figure>
             <div>
-                <h4>${videos?.title}</h4>
-                <p class="inline-flex gap-2">
+                <h4 class="text-[#171717] text-lg font-bold">${videos?.title}</h4>
+                <p class="inline-flex gap-2 text-[#171717B2] text-base font-normal mt-1">
                 ${videos.authors[0]?.profile_name}
                 </p>
-                <p>${videos.others?.views} views</p>
+                <p class="text-[#171717B2] text-base font-normal mt-1.5">${videos.others?.views} views</p>
             </div>
+          </div>
         </div>
         `;
       }
