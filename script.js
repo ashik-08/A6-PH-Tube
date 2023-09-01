@@ -1,4 +1,3 @@
-let num = 2;
 const showAllButton = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/videos/categories"
@@ -11,7 +10,7 @@ const showAllButton = async () => {
   data.data.forEach((category) => {
     const div = document.createElement("div");
     div.innerHTML = `
-        <button onclick="showVideos(${category.category_id}); toggleLoadingDots(true); changeColor(${category.category_id});" class="button bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">${category.category}</button>
+        <button onclick="showVideos(${category.category_id}); toggleLoadingDots(true); changeColor('${category.category_id}');" class="button bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">${category.category}</button>
         `;
     buttonContainer.appendChild(div);
   });
@@ -43,8 +42,32 @@ const showVideos = async (id) => {
   } else {
     // console.log(data.data[0].thumbnail);
     data.data.forEach((videos) => {
+
+      // if (videos.others?.posted_date !== "") {
+      //   const hours = Math.floor(videos.others?.posted_date / 3600);
+      //   const minutes = Math.floor((videos.others?.posted_date % 3600) / 60);
+
+      //   return {hours, minutes};
+      // }
+
+      // time converting function
+      const timeConvert = () => {
+        if (videos.others?.posted_date !== "") {
+          const hours = Math.floor(videos.others?.posted_date / 3600);
+          const minutes = Math.floor((videos.others?.posted_date % 3600) / 60);
+
+          return `${hours}hrs ${minutes}min ago`;
+        }
+        else {
+          return 'No data available';
+        }
+      }
+
+      const time = timeConvert();
+
       const div = document.createElement("div");
       if (videos.authors[0]?.verified === true) {
+        
         // div.innerHTML = `
         // <figure class="w-[300px] h-[200px]">
         //     <img src="${videos?.thumbnail}" alt="thumbnail-img" class="rounded-lg"/>
@@ -64,8 +87,11 @@ const showVideos = async (id) => {
         // `;
         div.innerHTML = `
         <div class="space-y-5">
-          <figure class="max-w-[350px] h-[200px]">
+          <figure class="max-w-[350px] h-[200px] relative">
             <img class="w-full h-full rounded-lg" src="${videos?.thumbnail}" alt="thumbnail-img" />
+            <div class="bg-[#171717] w-1/3 rounded absolute bottom-3 right-3">
+              <span class="text-white text-xs font-normal flex justify-center py-1">${time}</span>
+            </div>
           </figure>
 
           <div class="flex space-x-4">
@@ -83,6 +109,14 @@ const showVideos = async (id) => {
         </div>
         `;
       } else {
+
+        // if (videos.others?.posted_date !== "") {
+        //   const hours = Math.floor(videos.others?.posted_date / 3600);
+        //   const minutes = Math.floor((videos.others?.posted_date % 3600) / 60);
+  
+        //   return {hours, minutes};
+        // }
+
         // div.innerHTML = `
         // <figure class="w-[300px] h-[200px]">
         //     <img src="${videos?.thumbnail}" alt="thumbnail-img" class="rounded-lg"/>
@@ -116,8 +150,11 @@ const showVideos = async (id) => {
         // `;
         div.innerHTML = `
         <div class="space-y-5">
-          <figure class="max-w-[350px] h-[200px]">
+          <figure class="max-w-[350px] h-[200px] relative">
             <img class="w-full h-full rounded-lg" src="${videos?.thumbnail}" alt="thumbnail-img" />
+            <div class="bg-[#171717] w-1/3 rounded absolute bottom-3 right-3">
+              <span class="text-white text-xs font-normal flex justify-center py-1">${time}</span>
+            </div>
           </figure>
 
           <div class="flex space-x-4">
@@ -154,16 +191,67 @@ const toggleLoadingDots = (isLoading) => {
     loadingDots.classList.add("hidden");
   }
 };
+/*
+// change button color
+let buttons = document.querySelectorAll('.button');
+let prevButtonIndex = null;
+
+// Set the initial color
+// changeColor(1000);
+
+function changeColor(index) {
+    console.log('clicked');
+  if (prevButtonIndex !== null) {
+    buttons[prevButtonIndex].style.backgroundColor = 'gray';
+  }
+
+  buttons[index].style.backgroundColor = 'red';
+  prevButtonIndex = index;
+}
+*/
 
 // change button color
-// let buttons = document.querySelectorAll('.button');
+// let buttons = document.getElementById('');
 // let prevButtonIndex = null;
 
 // Set the initial color
-// changeColor(0);
+// changeColor(1000);
+
+// const changeColor = (id) => {
+//     console.log('clicked', id);
+//     let buttons = document.getElementById(id);
+//     let prevButtonId = null;
+//   if (prevButtonId !== null) {
+//     buttons[prevButtonId].style.backgroundColor = 'gray';
+//   }
+
+//   buttons[id].style.backgroundColor = 'red';
+//   prevButtonId = id;
+// }
 /*
+let prevButtonId = null; // Initialize prevButtonId outside the function to remember the previously clicked button
+
+const changeColor = (id) => {
+  console.log('clicked', id);
+
+  if (prevButtonId !== null) {
+    let prevButton = document.getElementById(prevButtonId);
+    prevButton.style.backgroundColor = 'gray';
+  }
+
+  let currentButton = document.getElementById(id);
+  currentButton.style.backgroundColor = 'red';
+  prevButtonId = id;
+};
+
+// Call the function to initially make the first button red (you can call this when the page loads)
+// changeColor('1000'); 
+*/
+/*
+let buttons = document.getElementById('button');
+let prevButtonIndex = null;
+
 function changeColor(index) {
-    console.log('clicked');
   if (prevButtonIndex !== null) {
     buttons[prevButtonIndex].style.backgroundColor = 'gray';
   }
