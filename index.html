@@ -34,7 +34,7 @@
       }
     </style>
   </head>
-  <body class="font-inter container mx-auto">
+  <body class="font-inter container mx-auto px-3 sm:px-5 md:px-8">
     <header>
       <!-- Nav bar starts here -->
       <nav>
@@ -64,13 +64,52 @@
       <div class="border-b my-5"></div>
     </header>
     <main>
-        <!-- Button section -->
-        <section id="button-container" class="flex justify-center gap-8 mb-10">
-            <!-- <button class="bg-[#FF1F3D] rounded text-white text-lg font-semibold px-5 py-2">All</button> -->
-            <!-- <button class="bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">Music</button> -->
-        </section>
-        <!-- Card section -->
-        <section id="card-container"></section>
+      <!-- Button section -->
+      <section
+        id="button-container"
+        class="flex flex-wrap justify-center items-center gap-8 mb-10"
+      >
+        <!-- <button class="bg-[#FF1F3D] rounded text-white text-lg font-semibold px-5 py-2">All</button> -->
+        <!-- <button class="bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">Music</button> -->
+      </section>
+
+      <!-- Loading dots -->
+      <div id="loading-dots" class="text-center hidden">
+        <span class="loading loading-dots loading-lg"></span>
+      </div>
+
+      <!-- Card section -->
+      <section
+        id="card-container"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+      >
+        <!-- if contains data -->
+        <!-- <div>
+          <figure>
+            <img src="./images/Icon.png" alt="thumbnail-img" class="rounded-lg"/>
+          </figure>
+          <div class="flex space-x-3">
+            <figure>
+              <img src="./images/badge.svg" alt="user-img" />
+            </figure>
+            <div>
+              <h4>Title</h4>
+              <p class="inline-flex gap-2">
+                Awlad Hossain <img src="./images/badge.svg" alt="verification-img" />
+              </p>
+              <p>91K views</p>
+            </div>
+          </div>
+        </div> -->
+      </section>
+      <!-- if not contain data -->
+      <div id="null-card-container"></div>
+      <!-- <div class="flex flex-col items-center mt-48">
+        <figure>
+            <img src="./images/Icon.png" alt="">
+        </figure>
+        <h1 class="text-[#171717] text-3xl font-bold mt-8 text-center">Oops!! Sorry, There is no <br> content here</h1>
+    </div> -->
     </main>
     <footer></footer>
     <script src="script.js"></script>
