@@ -9,7 +9,7 @@ const showAllButton = async () => {
   data.data.forEach((category) => {
     const div = document.createElement("div");
     div.innerHTML = `
-        <button onclick="showVideos(${category.category_id}); toggleLoadingDots(true);" class="bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">${category.category}</button>
+        <button id="${category.category_id}" onclick="showVideos(${category.category_id}); toggleLoadingDots(true); changeColor('${category.category_id}');" class="button bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">${category.category}</button>
         `;
     buttonContainer.appendChild(div);
   });
@@ -136,6 +136,21 @@ const toggleLoadingDots = (isLoading) => {
     loadingDots.classList.remove("hidden");
   } else {
     loadingDots.classList.add("hidden");
+  }
+};
+
+const changeColor = (id) => {
+  const buttons = document.querySelectorAll(".button");
+  buttons.forEach((button) => {
+    button.style.backgroundColor = "#25252526";
+    button.style.fontWeight = "500";
+    button.style.color = "#252525B2";
+  });
+  const clicked = document.getElementById(`${id}`);
+  if (clicked) {
+    clicked.style.backgroundColor = "#FF1F3D";
+    clicked.style.fontWeight = "600";
+    clicked.style.color = "#FFFFFF";
   }
 };
 
