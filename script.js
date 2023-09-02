@@ -9,7 +9,7 @@ const showAllButton = async () => {
   data.data.forEach((category) => {
     const div = document.createElement("div");
     div.innerHTML = `
-        <button onclick="showVideos(${category.category_id}); toggleLoadingDots(true); changeColor('${category.category_id}');" class="button bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">${category.category}</button>
+        <button onclick="showVideos(${category.category_id}); toggleLoadingDots(true);" class="bg-[#25252526] rounded text-[#252525B2] text-lg font-medium px-5 py-2">${category.category}</button>
         `;
     buttonContainer.appendChild(div);
   });
@@ -111,18 +111,6 @@ const showVideos = async (id) => {
   toggleLoadingDots(false);
 };
 
-const toggleLoadingDots = (isLoading) => {
-  const loadingDots = document.getElementById("loading-dots");
-  if (isLoading) {
-    loadingDots.classList.remove("hidden");
-  } else {
-    loadingDots.classList.add("hidden");
-  }
-};
-
-showAllButton();
-showVideos("1000");
-
 const sortByViews = () => {
   const cardContainer = document.getElementById("card-container");
 
@@ -141,3 +129,15 @@ const sortByViews = () => {
     cardContainer.appendChild(video);
   });
 };
+
+const toggleLoadingDots = (isLoading) => {
+  const loadingDots = document.getElementById("loading-dots");
+  if (isLoading) {
+    loadingDots.classList.remove("hidden");
+  } else {
+    loadingDots.classList.add("hidden");
+  }
+};
+
+showAllButton();
+showVideos("1000");
