@@ -54,10 +54,10 @@ const showVideos = async (id) => {
       const time = timeConvert();
 
       const div = document.createElement("div");
-      if (videos.authors[0]?.verified === true) {
+      
         div.innerHTML = `
         <div class="space-y-5">
-          <figure class="max-w-[350px] h-[200px] relative">
+          <figure class="max-w-full h-[200px] relative">
             <img class="w-full h-full rounded-lg" src="${videos?.thumbnail}" alt="thumbnail-img" />
             <div class="bg-[#171717] w-1/3 rounded absolute bottom-3 right-3">
               <span class="text-white text-xs font-normal flex justify-center py-1">${time}</span>
@@ -71,39 +71,14 @@ const showVideos = async (id) => {
             <div>
                 <h4 class="text-[#171717] text-lg font-bold">${videos?.title}</h4>
                 <p class="inline-flex gap-2 text-[#171717B2] text-base font-normal mt-1">
-                ${videos.authors[0]?.profile_name} <img src="./images/badge.svg" alt="verification-img" />
+                ${videos.authors[0]?.profile_name} ${videos.authors[0]?.verified ? '<img src="./images/badge.svg" alt="verification-img" />' : ''}
                 </p>
                 <p id="views-count" class="text-[#171717B2] text-base font-normal mt-1.5">${videos.others?.views} views</p>
             </div>
           </div>
         </div>
         `;
-      } else {
-        div.innerHTML = `
-        <div class="space-y-5">
-          <figure class="max-w-[350px] h-[200px] relative">
-            <img class="w-full h-full rounded-lg" src="${videos?.thumbnail}" alt="thumbnail-img" />
-            <div class="bg-[#171717] w-1/3 rounded absolute bottom-3 right-3">
-              <span class="text-white text-xs font-normal flex justify-center py-1">${time}</span>
-            </div>
-          </figure>
-
-          <div class="flex space-x-4">
-            <figure class="w-10 h-10">
-                <img class="w-full h-full rounded-full" src="${videos.authors[0]?.profile_picture}" alt="user-img" />
-            </figure>
-            <div>
-                <h4 class="text-[#171717] text-lg font-bold">${videos?.title}</h4>
-                <p class="inline-flex gap-2 text-[#171717B2] text-base font-normal mt-1">
-                ${videos.authors[0]?.profile_name}
-                </p>
-                <p id="views-count" class="text-[#171717B2] text-base font-normal mt-1.5">${videos.others?.views} views</p>
-            </div>
-          </div>
-        </div>
-        `;
-      }
-
+      
       cardContainer.appendChild(div);
     });
   }
