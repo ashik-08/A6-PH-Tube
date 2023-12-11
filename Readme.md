@@ -5,8 +5,8 @@
 - [PH Tube Website](https://ashik-08.github.io/A6-PH-Tube/)
 
 ## Description
-PH Tube is a dynamic video streaming website built using HTML, Tailwind CSS, DaisyUI component and JavaScript. The website fetches video data and details from an API, categorizes them in different tabs by their category and provides a user-friendly interface for video exploration. If a category has no content, 'There is no
-content here' message is displayed. The website includes a sorting function based on view count, from highest to lowest. Additionally, there is a blog page featuring common questions and answers displayed with an accordion. PH Tube is designed to be responsive, ensuring an optimal viewing experience on various devices and aspect ratios.
+PH Tube is a dynamic video streaming website built using HTML, Tailwind CSS, DaisyUI component and JavaScript. The website fetches video data and details from an API, categorizes them in different tabs by their category and provides a user-friendly interface for video exploration. If a category has no content, &apos; There is no
+content here &apos; message is displayed. The website includes a sorting function based on view count, from highest to lowest. Additionally, there is a blog page featuring common questions and answers displayed with an accordion. PH Tube is designed to be responsive, ensuring an optimal viewing experience on various devices and aspect ratios.
 
 ## Technology
 - HTML
